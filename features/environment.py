@@ -14,7 +14,7 @@ def browser_init(context, test_name):
     # context.driver = webdriver.Firefox()
 
     context.driver.maximize_window()
-    context.driver.implicitly_wait(5)
+    context.driver.implicitly_wait(10)
     context.driver.wait = WebDriverWait(context.driver, 10)
 
     context.app = Application(context.driver)

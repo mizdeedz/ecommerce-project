@@ -21,6 +21,16 @@ def click_left_arrow(context):
     context.app.main_page.click_left_arrow()
 
 
+@when('Click the bottom right dot')
+def click_bottom_right_dot(context):
+    context.app.main_page.click_bottom_right_dot()
+
+
+@when('Click the bottom left dot')
+def click_bottom_left_dot(context):
+    context.app.main_page.click_bottom_left_dot()
+
+
 @when('Store product name')
 def store_product_name(context):
     context.app.main_page.store_product_name()

@@ -7,6 +7,8 @@ class MainPage(Page):
     TOP_BANNER = (By.CSS_SELECTOR, 'div.slider.slider-nav-large')
     RIGHT_ARROW = (By.CSS_SELECTOR, 'button[aria-label="Next"] svg.flickity-button-icon')
     LEFT_ARROW = (By.CSS_SELECTOR, 'button[aria-label="Previous"] svg.flickity-button-icon')
+    RIGHT_DOT = (By.CSS_SELECTOR, 'li[aria-label="Page dot 2"]')
+    LEFT_DOT = (By.CSS_SELECTOR, 'li[aria-label="Page dot 1"]')
     PRODUCT_NAME = (By.XPATH, '//div[@class="text-inner text-center"]//strong[contains(text(), "Mac")]')
     OTHER_PRODUCT_NAME = (By.XPATH, '//div[@class="text-inner text-left"]//strong[contains(text(), "iPad")]')
     CURRENT_PRODUCT = ''
@@ -26,6 +28,14 @@ class MainPage(Page):
 
     def click_left_arrow(self):
         self.wait_for_element_click(*self.LEFT_ARROW)
+        sleep(2)
+
+    def click_bottom_right_dot(self):
+        self.wait_for_element_click(*self.RIGHT_DOT)
+        sleep(2)
+
+    def click_bottom_left_dot(self):
+        self.wait_for_element_click(*self.LEFT_DOT)
         sleep(2)
 
     def store_product_name(self):

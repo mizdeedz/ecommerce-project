@@ -31,11 +31,21 @@ def click_bottom_left_dot(context):
     context.app.main_page.click_bottom_left_dot()
 
 
-@when('Store product name')
-def store_product_name(context):
-    context.app.main_page.store_product_name()
+@when('Store next product name')
+def store_next_product_name(context):
+    context.app.main_page.store_next_product_name()
+
+
+@when('Store first product name')
+def store_first_product_name(context):
+    context.app.main_page.store_first_product_name()
 
 
 @then('Verify different products were seen')
 def verify_product_text(context):
     context.app.main_page.verify_product_text()
+
+
+@then('User can click through banner links and verify correct page opens')
+def verify_banner_link_clicks(context):
+    context.app.main_page.verify_banner_link_clicks()

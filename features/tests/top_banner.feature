@@ -5,16 +5,18 @@ Feature: Test cases for top banner functionality
     Given Open Gettop main page
     When Hover over the top banner
     And Click the right arrow icon
-    And Store product name
+    And Store next product name
     And Click the left arrow icon
+    And Store first product name
     Then Verify different products were seen
 
   Scenario: User can click bottom dots to see top banners
     Given Open Gettop main page
     When Hover over the top banner
     And Click the bottom right dot
-    And Store product name
+    And Store next product name
     And Click the bottom left dot
+    And Store first product name
     Then Verify different products were seen
 
 #  Scenario: User can click on product banner and is taken to correct category page

@@ -9,9 +9,11 @@ class MainPage(Page):
     LEFT_ARROW = (By.CSS_SELECTOR, 'button[aria-label="Previous"] svg.flickity-button-icon')
     RIGHT_DOT = (By.CSS_SELECTOR, 'li[aria-label="Page dot 2"]')
     LEFT_DOT = (By.CSS_SELECTOR, 'li[aria-label="Page dot 1"]')
-    PRODUCT_NAME = (By.XPATH, '//div[@class="text-inner text-center"]//strong[contains(text(), "Mac")]')
-    OTHER_PRODUCT_NAME = (By.XPATH, '//div[@class="text-inner text-left"]//strong[contains(text(), "iPad")]')
-    CURRENT_PRODUCT = ''
+    NEXT_PRODUCT_NAME = (By.XPATH, '//div[@class="text-inner text-center"]//strong[contains(text(), "Mac")]')
+    FIRST_PRODUCT_NAME = (By.XPATH, '//div[@class="text-inner text-left"]//strong[contains(text(), "iPad")]')
+    NEXT_PRODUCT = ''
+    FIRST_PRODUCT = ''
+    FIRST_PRODUCT_TEXT = ''
 
     def open_main_page(self):
         self.open_page()
@@ -38,13 +40,18 @@ class MainPage(Page):
         self.wait_for_element_click(*self.LEFT_DOT)
         sleep(2)
 
-    def store_product_name(self):
-        self.CURRENT_PRODUCT = self.find_element(*self.PRODUCT_NAME).text
-        print(f'Product Name is {self.CURRENT_PRODUCT}')
+    def store_next_product_name(self):
+        self.NEXT_PRODUCT = self.find_element(*self.NEXT_PRODUCT_NAME).text
+        print(f'Next Product Name is {self.NEXT_PRODUCT}')
+
+    def store_first_product_name(self):
+        self.FIRST_PRODUCT = self.find_element(*self.FIRST_PRODUCT_NAME).text
+        self.FIRST_PRODUCT_TEXT = self.FIRST_PRODUCT[1::]
+        print(f'First Product Name is {self.FIRST_PRODUCT_TEXT}')
 
     def verify_product_text(self):
-        other_product = self.find_element(*self.OTHER_PRODUCT_NAME).text
-        other_product_text = other_product[1::]
-        print(f'Other Product Name is {other_product_text}')
-        assert other_product_text != self.CURRENT_PRODUCT, f'Error! Actual {other_product_text} ' \
-                                                      f'does not differ from Expected {self.CURRENT_PRODUCT}'
+        assert self.FIRST_PRODUCT_TEXT != self.NEXT_PRODUCT, f'Error! Actual {self.FIRST_PRODUCT_TEXT} ' \
+                                                      f'does not differ from Expected {self.NEXT_PRODUCT}'
+
+    def verify_banner_link_clicks(self):
+        sleep(1)

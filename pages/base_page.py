@@ -37,6 +37,9 @@ class Page:
     def wait_for_element_appear(self, *locator):
         return self.wait.until(EC.presence_of_element_located(locator))
 
+    def wait_for_located_element_visibility(self, *locator):
+        return self.wait.until(EC.visibility_of_element_located(locator))
+
     def verify_text(self, expected_text, *locator):
         actual_text = self.driver.find_element(*locator).text
         assert expected_text == actual_text, f'Expected {expected_text}, but got {actual_text}'

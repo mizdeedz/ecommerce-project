@@ -19,9 +19,9 @@ Feature: Test cases for top banner functionality
     And Store first product name
     Then Verify different products were seen
 
-#  Scenario: User can click on product banner and is taken to correct category page
-#    Given Open Gettop main page
-#    Then User can click through banner links and verify correct page opens
+  Scenario: User can click on product banner and is taken to correct category page
+    Given Open Gettop main page
+    Then User can click through banner links and verify correct page opens
 
 
 

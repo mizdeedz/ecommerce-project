@@ -3,6 +3,10 @@ from app.application import Application
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 
+## BrowserStack ##
+bs_user = ''
+bs_pw = ''
+
 
 def browser_init(context, test_name):
     """
@@ -11,7 +15,7 @@ def browser_init(context, test_name):
     """
     # context.driver = webdriver.Chrome(r'C:\Users\jessi\repo\qa_auto\ecommerce-project\chromedriver_win32\chromedriver.exe')
     # context.driver = webdriver.Safari()
-    context.driver = webdriver.Firefox(executable_path=r'C:\Users\jessi\repo\qa_auto\ecommerce-project\geckodriver-v0.30.0-win64\geckodriver.exe')
+    # context.driver = webdriver.Firefox(executable_path=r'C:\Users\jessi\repo\qa_auto\ecommerce-project\geckodriver-v0.30.0-win64\geckodriver.exe')
 
     ## HEADLESS MODE ##
     # options = webdriver.ChromeOptions()
@@ -19,6 +23,17 @@ def browser_init(context, test_name):
     # options.add_argument('--window-size=1920,1080')
     # context.driver = webdriver.Chrome(r'C:\Users\jessi\repo\qa_auto\ecommerce-project\chromedriver_win32\chromedriver.exe',
     #                                   chrome_options=options)
+
+    ## for browerstack ##
+    desired_cap = {
+        'browser': 'Chrome',
+        'browser_version': '96',
+        'os': 'Windows',
+        'os_version': '10',
+        'name': test_name
+    }
+    url = f'http://{bs_user}:{bs_pw}@hub-cloud.browserstack.com/wd/hub'
+    context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(10)

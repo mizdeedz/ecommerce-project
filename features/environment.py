@@ -16,7 +16,7 @@ def browser_init(context, test_name):
     :param context: Behave context
     :param test_name: scenario.name
     """
-    # context.driver = webdriver.Chrome(r'C:\Users\jessi\repo\qa_auto\ecommerce-project\chromedriver_win32\chromedriver.exe')
+    context.driver = webdriver.Chrome(r'C:\Users\jessi\repo\qa_auto\ecommerce-project\chromedriver_win32\chromedriver.exe')
     # context.driver = webdriver.Safari()
     # context.driver = webdriver.Firefox(executable_path=r'C:\Users\jessi\repo\qa_auto\ecommerce-project\geckodriver-v0.30.0-win64\geckodriver.exe')
 
@@ -40,8 +40,8 @@ def browser_init(context, test_name):
 
     ## EventFiringWebDriver - log file ##
     ## event for drivers ##
-    context.driver = EventFiringWebDriver(webdriver.Chrome(r'C:\Users\jessi\repo\qa_auto\ecommerce-project\chromedriver_win32\chromedriver.exe'),
-                                          MyListener())
+    # context.driver = EventFiringWebDriver(webdriver.Chrome(r'C:\Users\jessi\repo\qa_auto\ecommerce-project\chromedriver_win32\chromedriver.exe'),
+    #                                      MyListener())
 
     ## event for headless mode ##
     # context.driver = EventFiringWebDriver(webdriver.Chrome(chrome_options = options), MyListener())
@@ -55,18 +55,18 @@ def browser_init(context, test_name):
 
 def before_scenario(context, scenario):
     print('\nStarted scenario: ', scenario.name)
-    logger.info(f'Started scenario: {scenario.name}')
+    # logger.info(f'Started scenario: {scenario.name}')
     browser_init(context, scenario.name)
 
 
 def before_step(context, step):
     print('\nStarted step: ', step)
-    logger.info(f'Started step: {step}')
+    # logger.info(f'Started step: {step}')
 
 
 def after_step(context, step):
     if step.status == 'failed':
-        logger.error(f'Step failed: {step}')
+        # logger.error(f'Step failed: {step}')
         print('\nStep failed: ', step)
         # Mark test case as FAILED on BrowserStack:
         # context.driver.execute_script(

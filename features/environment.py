@@ -10,6 +10,13 @@ from support.logger import logger, MyListener
 # bs_user = ''
 # bs_pw = ''
 
+## Allure command to wrap ALL or SPECIFIC tests ##
+# behave -f allure_behave.formatter:AllureFormatter -o test_results/ features/
+# behave -f allure_behave.formatter:AllureFormatter -o test_results/ features/tests/product_page.feature
+
+## Allure command to show results ##
+# allure serve test_results/
+
 
 def browser_init(context, test_name):
     """

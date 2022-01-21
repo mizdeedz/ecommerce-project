@@ -31,6 +31,16 @@ def click_bottom_left_dot(context):
     context.app.main_page.click_bottom_left_dot()
 
 
+@when('Swipe right on banner')
+def swipe_right_banner(context):
+    context.app.main_page.swipe_right_banner()
+
+
+@when('Swipe left on banner')
+def swipe_left_banner(context):
+    context.app.main_page.swipe_left_banner()
+
+
 @when('Store next product name')
 def store_next_product_name(context):
     context.app.main_page.store_next_product_name()
@@ -49,3 +59,8 @@ def verify_product_text(context):
 @then('User can click through banner links and verify correct page opens')
 def verify_banner_link_clicks(context):
     context.app.main_page.verify_banner_link_clicks()
+
+
+@then('User can tap through banner links and verify correct page opens')
+def verify_mobile_banner_link_taps(context):
+    context.app.main_page.verify_mobile_banner_link_taps()

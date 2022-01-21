@@ -2,6 +2,7 @@ from app.application import Application
 
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.events import EventFiringWebDriver
 
 from support.logger import logger, MyListener
@@ -23,7 +24,7 @@ def browser_init(context, test_name):
     :param context: Behave context
     :param test_name: scenario.name
     """
-    context.driver = webdriver.Chrome(r'C:\Users\jessi\repo\qa_auto\ecommerce-project\chromedriver_win32\chromedriver.exe')
+    # context.driver = webdriver.Chrome(r'C:\Users\jessi\repo\qa_auto\ecommerce-project\chromedriver_win32\chromedriver.exe')
     # context.driver = webdriver.Safari()
     # context.driver = webdriver.Firefox(executable_path=r'C:\Users\jessi\repo\qa_auto\ecommerce-project\geckodriver-v0.30.0-win64\geckodriver.exe')
 
@@ -34,7 +35,7 @@ def browser_init(context, test_name):
     # context.driver = webdriver.Chrome(r'C:\Users\jessi\repo\qa_auto\ecommerce-project\chromedriver_win32\chromedriver.exe',
     #                                   chrome_options=options)
 
-    ## for browerstack ##
+    ## For BrowerStack ##
     # desired_cap = {
     #     'browser': 'Chrome',
     #     'browser_version': '96',
@@ -44,6 +45,32 @@ def browser_init(context, test_name):
     # }
     # url = f'http://{bs_user}:{bs_pw}@hub-cloud.browserstack.com/wd/hub'
     # context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
+
+    ## Mobile Emulation - local ##
+
+    ## mobile - use device name ##
+    mobile_emulation = {"deviceName": "iPhone SE"}
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+    chrome_options.add_experimental_option("w3c", False)
+    context.driver = webdriver.Chrome(
+        r'C:\Users\jessi\repo\qa_auto\ecommerce-project\chromedriver_win32\chromedriver.exe',
+        desired_capabilities=chrome_options.to_capabilities())
+
+    ## mobile - specify device params ##
+    # mobile_emulation = {
+    #     "deviceMetrics": {"width": 360, "height": 700, "pixelRatio": 2.0, "mobile": True},
+    #     "userAgent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 ("
+    #                  "KHTML, like Gecko) Chrome/%s Mobile Safari/537.36"}
+    # chrome_options = Options()
+    # chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+    # context.driver = webdriver.Chrome(
+    #     r'C:\Users\jessi\repo\qa_auto\ecommerce-project\chromedriver_win32\chromedriver.exe',
+    #     chrome_options=chrome_options)
+
+    ## mobile - remote (BrowserStack) ##
+    # context.driver = webdriver.Remote(command_executor='http://127.0.0.1:4444/wd/hub',
+    #                                   desired_capabilities=chrome_options.to_capabilities())
 
     ## EventFiringWebDriver - log file ##
     ## event for drivers ##

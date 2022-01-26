@@ -8,8 +8,8 @@ from selenium.webdriver.support.events import EventFiringWebDriver
 from support.logger import logger, MyListener
 
 ## BrowserStack ##
-# bs_user = ''
-# bs_pw = ''
+bs_user = 'jessicatinsley_oaecDv'
+bs_pw = 'ehYm5xf9jCRmUM7e6UpQ'
 
 ## Allure command to wrap ALL or SPECIFIC tests ##
 # behave -f allure_behave.formatter:AllureFormatter -o test_results/ features/
@@ -38,7 +38,7 @@ def browser_init(context, test_name):
     ## For BrowerStack ##
     # desired_cap = {
     #     'browser': 'Chrome',
-    #     'browser_version': '96',
+    #     'browser_version': '97',
     #     'os': 'Windows',
     #     'os_version': '10',
     #     'name': test_name
@@ -49,13 +49,13 @@ def browser_init(context, test_name):
     ## Mobile Emulation - local ##
 
     ## mobile - use device name ##
-    mobile_emulation = {"deviceName": "iPhone SE"}
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
-    chrome_options.add_experimental_option("w3c", False)
-    context.driver = webdriver.Chrome(
-        r'C:\Users\jessi\repo\qa_auto\ecommerce-project\chromedriver_win32\chromedriver.exe',
-        desired_capabilities=chrome_options.to_capabilities())
+    # mobile_emulation = {"deviceName": "iPhone SE"}
+    # chrome_options = webdriver.ChromeOptions()
+    # chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+    # chrome_options.add_experimental_option("w3c", False)
+    # context.driver = webdriver.Chrome(
+    #     r'C:\Users\jessi\repo\qa_auto\ecommerce-project\chromedriver_win32\chromedriver.exe',
+    #     desired_capabilities=chrome_options.to_capabilities())
 
     ## mobile - specify device params ##
     # mobile_emulation = {
@@ -68,7 +68,22 @@ def browser_init(context, test_name):
     #     r'C:\Users\jessi\repo\qa_auto\ecommerce-project\chromedriver_win32\chromedriver.exe',
     #     chrome_options=chrome_options)
 
-    ## mobile - remote (BrowserStack) ##
+    ## mobile - remote (BrowserStack) - use device name ##
+    desired_cap = {
+        'browser': 'Chrome',
+        'browser_version': '97',
+        'os': 'Windows',
+        'os_version': '10',
+        'name': test_name
+    }
+    url = f'http://{bs_user}:{bs_pw}@hub-cloud.browserstack.com/wd/hub'
+    mobile_emulation = {"deviceName": "iPhone SE"}
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+    chrome_options.add_experimental_option("w3c", False)
+    context.driver = webdriver.Remote(command_executor=url,
+                                      desired_capabilities=desired_cap, options=chrome_options)
+
     # context.driver = webdriver.Remote(command_executor='http://127.0.0.1:4444/wd/hub',
     #                                   desired_capabilities=chrome_options.to_capabilities())
 
